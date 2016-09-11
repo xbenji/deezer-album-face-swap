@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>album cover swap</title>
+		<link rel="stylesheet" href="index.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script type="text/javascript">
+
+			function displayAlbum() {
+
+				alb_id = document.getElementById('alb_id').value;
+				console.log(alb_id);
+				$.getJSON( "/cover_url/" + alb_id, function( data ) {
+					if (!('error' in data)) {
+						img = data.cover_big;
+						$("#preview").html("<img src='"+img+"' width='250' height='250'></img>");
+					} else {
+						$("#preview").html("");
+					}
+				});
+
+			}
+		</script>
+	</head>
+	<body>
+		<div style="margin:40px;">
+			<div>
+				<h2>Automatic Album Face Swap <span class="small-red">alpha</span></h2>
+				<p>Your face on an album cover !</p>
+			</div>
+
+			<table>
+				<tr>
+					<td>
+						<div id='demo-img'>
+							<img src='demo.jpg' width='250' height='250'></img>
+						</div>
+					</td>
+					<td>
+						<form action="faceswap" enctype="multipart/form-data" method="post">
+							<p>
+								1. Upload a face:<br>
+								<input class="margin-input" type="file" name="facefile" size="40">
+							</p>
+							<p>
+								2. Enter a Deezer album id:<br>
+								<input class="margin-input" id="alb_id" oninput="displayAlbum();" type="text" name="albid" size="16">
+								<div id='cover-loading'></div>
+							</p>
+							<!-- <p>
+								or upload any picture:<br>
+								<input type="file" name="albumfile" size="40">
+							</p> -->
+							
+							<div>
+							<input type="submit" value="Process">
+							</div>
+						</form>
+					</td>
+					<td>
+						<div id="preview"></div>
+					</td>
+				</tr>
+
+
+			</table>
+
+			<div id="footer">
+				<p>feedback: <a href="mailto:bch@deezer.com">bch@deezer.com</a></p>
+			</div>
+		</div>	
+	</body>
+
+</html>

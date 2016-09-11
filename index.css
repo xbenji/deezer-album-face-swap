@@ -1,0 +1,19 @@
+.small-red {
+	font-size:small; 
+	color:red;
+}
+
+.margin-input {
+	margin-top: 5px;
+	margin-left: 20px;
+}
+
+#demo-img {
+	float:left;
+	margin-right: 40px; 
+}
+
+#footer {
+	margin-top: 40px;
+	font-size: small;
+}
